@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.Locale;
 
+import static com.codeborne.selenide.Browsers.FIREFOX;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -29,6 +30,8 @@ public class StudentRegistrationFormTests {
     static void setup() {
         addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         Configuration.startMaximized = true;
+//        Configuration.browser = FIREFOX;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub/";
     }
 
     @AfterEach
