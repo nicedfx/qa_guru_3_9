@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.util.Locale;
@@ -29,9 +30,15 @@ public class StudentRegistrationFormTests {
     @BeforeAll
     static void setup() {
         addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
-        Configuration.startMaximized = true;
-//        Configuration.browser = FIREFOX;
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+
+        Configuration.browserCapabilities = capabilities;
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub/";
+        Configuration.startMaximized = true;
+        //        Configuration.browser = FIREFOX;
     }
 
     @AfterEach
@@ -40,6 +47,7 @@ public class StudentRegistrationFormTests {
         attachScreenshot("Last screenshot");
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
+        attachVideo();
 
         closeWebDriver();
     }
