@@ -22,6 +22,7 @@ public class TestBase {
 
         Configuration.browserCapabilities = capabilities;
         Configuration.remote = "http://" + System.getProperty("remote.browser.url") + ":4444/wd/hub/";
+        System.out.println(Configuration.remote);
         Configuration.startMaximized = true;
         //        Configuration.browser = FIREFOX;
     }
